@@ -11,7 +11,13 @@
             <p>{{ post.content }}</p>
     </div>
     <div>
-        <button class="btn btn-success" (click)="setLoveIt()">Love it !</button>
-        <button class="btn btn-danger" (click)="setDontLoveIt()">Don't love it !</button>
+        <button class="btn btn-success" (click)="onLoveIt()">Love it !</button>
+        <button class="btn btn-danger" (click)="onDontLoveIt()">Don't love it !</button>
+        
+            <span>
+                loveIts : {{ post.loveIts }}
+            </span>
+        
+        <button class="btn btn-danger pull-right" (click)="onDeletePost(post)">Supprimer le post</button>
     </div>
 </li>

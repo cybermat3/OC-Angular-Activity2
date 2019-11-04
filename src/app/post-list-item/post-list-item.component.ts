@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../Class/post';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Post } from '../models/post.model';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-list-item',
@@ -10,7 +11,7 @@ export class PostListItemComponent implements OnInit {
 
   @Input() post: Post;
 
-  constructor() { }
+  constructor(private postSerrvice: PostService) { }
 
   ngOnInit() {
   }
@@ -27,11 +28,15 @@ export class PostListItemComponent implements OnInit {
     return this.isSuccess() ? 'green' : this.isDanger() ? 'red' : '';
   }
 
-  setLoveIt(){
-    this.post.loveIts++;
+  onLoveIt(){
+    this.postSerrvice.setLoveIt(this.post);    
   }
   
-  setDontLoveIt(){
-    this.post.loveIts--;
+  onDontLoveIt(){
+    this.postSerrvice.setDontLoveIt(this.post);
+  }
+
+  onDeletePost(post:Post){
+    this.postSerrvice.removePost(post);
   }
 }

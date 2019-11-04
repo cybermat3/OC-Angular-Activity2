@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
-import { Post } from './Class/post';
+import { Component, OnInit } from '@angular/core';
+import { Post } from './models/post.model';
+import { PostService } from './services/post.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  lipsum: string = 'Vivamus in fermentum magna, imperdiet vestibulum purus. Aliquam sed urna eget mauris accumsan sollicitudin vitae ac purus. Cras lacus felis, dapibus at consequat sed, bibendum quis nisl. Donec dignissim, libero.';
-
-  posts: Array<Post> = [];
+export class AppComponent implements OnInit {
   
-  constructor(){
-    this.posts.push(new Post("Mon premier post", this.lipsum, 1));
-    this.posts.push(new Post("Mon deuxième post", this.lipsum, -1));
-    this.posts.push(new Post("Encore un post", this.lipsum, 0));
+  constructor(private postService: PostService) {}
+  
+  ngOnInit(): void {
+    this.postService.getPosts();
   }
 }

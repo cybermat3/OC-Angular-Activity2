@@ -2,13 +2,12 @@ export class Post {
   created_at: Date;
 
   constructor(
+    public id: number,
     public title: string,
     public content: string,
-    public loveIts: number
+    public loveIts?: number
   ) {
-    this.title = title;
-    this.content = content;
-    this.loveIts = loveIts;
+    this.loveIts = (!isNaN(loveIts)) ? loveIts : 0;
     this.created_at = new Date();
   }
 }
